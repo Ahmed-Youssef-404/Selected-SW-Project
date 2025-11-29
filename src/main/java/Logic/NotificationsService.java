@@ -15,6 +15,6 @@ public class NotificationsService {
     }
     
     public String sendNotification(String message){
-        return "Notification:" + message;
+        return "Notification: " + message;
     }
 }

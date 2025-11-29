@@ -1,10 +1,29 @@
-package com.mycompany.selected.sw.project;
+package Logic;
+
+import Logic.TaskManger;
+import Logic.UserFactory;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 public class MainUI extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainUI.class.getName());
+
+    private TaskManger taskManger;
+    private DefaultTableModel tableModel;
+
     public MainUI() {
         initComponents();
+        table.setRowHeight(45);
+
+        taskManger = TaskManger.getInstance();
+
+        setupTaskTable();
+        activeCompleteButton();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -29,15 +48,13 @@ public class MainUI extends javax.swing.JFrame {
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        copleteTask = new javax.swing.JButton();
+        completeTask = new javax.swing.JButton();
         notificatinosPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         notificationTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(270, 480));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
 
@@ -93,13 +110,11 @@ public class MainUI extends javax.swing.JFrame {
                             .addComponent(userNameInput)))
                     .addGroup(addUserPanelLayout.createSequentialGroup()
                         .addGap(137, 137, 137)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(addUserPanelLayout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(addUserButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(addUserPanelLayout.createSequentialGroup()
-                    .addGap(102, 102, 102)
-                    .addComponent(addUserButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(111, Short.MAX_VALUE)))
         );
         addUserPanelLayout.setVerticalGroup(
             addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,12 +129,9 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userRoleSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
-            .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addUserPanelLayout.createSequentialGroup()
-                    .addContainerGap(257, Short.MAX_VALUE)
-                    .addComponent(addUserButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(13, 13, 13)))
+                .addGap(18, 18, 18)
+                .addComponent(addUserButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         addTaskPanel.setBackground(new java.awt.Color(3, 26, 60));
@@ -141,7 +153,7 @@ public class MainUI extends javax.swing.JFrame {
 
         taskTypeSelect.setBackground(new java.awt.Color(239, 248, 255));
         taskTypeSelect.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        taskTypeSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Improvement", "Feature", "Bug" }));
+        taskTypeSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feature", "Improvement", "Bug" }));
         taskTypeSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         taskTypeSelect.setPreferredSize(new java.awt.Dimension(81, 31));
         taskTypeSelect.addActionListener(this::taskTypeSelectActionPerformed);
@@ -184,7 +196,7 @@ public class MainUI extends javax.swing.JFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(addTaskPanelLayout.createSequentialGroup()
-                        .addGap(85, 85, 85)
+                        .addGap(96, 96, 96)
                         .addComponent(addTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(13, Short.MAX_VALUE))
             .addGroup(addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,19 +220,20 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(assignToUserSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(addTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(addTaskPanelLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(317, Short.MAX_VALUE)))
+                    .addContainerGap(340, Short.MAX_VALUE)))
         );
 
         tablePanel.setBackground(new java.awt.Color(164, 174, 197));
 
         table.setBackground(new java.awt.Color(242, 237, 245));
+        table.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -237,14 +250,16 @@ public class MainUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        table.setGridColor(new java.awt.Color(232, 224, 255));
         jScrollPane1.setViewportView(table);
 
-        copleteTask.setBackground(new java.awt.Color(153, 255, 153));
-        copleteTask.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        copleteTask.setForeground(new java.awt.Color(0, 0, 51));
-        copleteTask.setText("Assign as completed Task");
-        copleteTask.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        copleteTask.addActionListener(this::copleteTaskActionPerformed);
+        completeTask.setBackground(new java.awt.Color(153, 255, 153));
+        completeTask.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        completeTask.setForeground(new java.awt.Color(0, 0, 51));
+        completeTask.setText("Assign as completed Task");
+        completeTask.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        completeTask.setEnabled(false);
+        completeTask.addActionListener(this::completeTaskActionPerformed);
 
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
@@ -253,7 +268,7 @@ public class MainUI extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(copleteTask, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(completeTask, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
         tablePanelLayout.setVerticalGroup(
@@ -261,7 +276,7 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(tablePanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(copleteTask, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(completeTask, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -273,7 +288,7 @@ public class MainUI extends javax.swing.JFrame {
         jLabel4.setText("Notifications");
 
         notificationTextField.setBackground(new java.awt.Color(211, 211, 245));
-        notificationTextField.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        notificationTextField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         notificationTextField.setForeground(new java.awt.Color(0, 0, 51));
         notificationTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         notificationTextField.setDisabledTextColor(new java.awt.Color(0, 0, 51));
@@ -322,7 +337,7 @@ public class MainUI extends javax.swing.JFrame {
             HolderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HolderPanelLayout.createSequentialGroup()
                 .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(notificatinosPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(HolderPanelLayout.createSequentialGroup()
@@ -352,16 +367,59 @@ public class MainUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameInputActionPerformed
 
-    private void copleteTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copleteTaskActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_copleteTaskActionPerformed
+    private void completeTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completeTaskActionPerformed
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow != -1) {
+            List<Task> tasks = taskManger.getTasks();
+            Task taskToComplete = tasks.get(selectedRow);
+            taskToComplete.setStatus("Completed");
+            tableModel.setValueAt("Completed", selectedRow, 3);
+            completeTask.setEnabled(false);
+            String notification = NotificationsService.getInstance().sendNotification(
+                    "Task '" + taskToComplete.getTitle() + "' marked as Completed."
+            );
+
+            notificationTextField.setText(notification);
+            clearNotification();
+        }
+
+    }//GEN-LAST:event_completeTaskActionPerformed
 
     private void taskTitleInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskTitleInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_taskTitleInputActionPerformed
 
     private void addTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTaskButtonActionPerformed
-        // TODO add your handling code here:
+        String taskTitle = taskTitleInput.getText();
+        String taskType = taskTypeSelect.getSelectedItem().toString();
+        String assignedTo = (String) assignToUserSelect.getSelectedItem();
+
+        System.out.println(assignedTo);
+
+        if (taskTitle.isEmpty() || assignedTo == null) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Enter taks title and select a user to assign to",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+
+        Task newTask = TaskFactory.createTask(taskType, taskTitle);
+        newTask.setAssignedTo(assignedTo);
+        taskManger.addTask(newTask);
+        tableModel.addRow(newTask.toRow());
+
+        String notification = NotificationsService.getInstance().sendNotification(
+                "New " + taskType + " '" + taskTitle + "' assigned to " + assignedTo + "."
+        );
+
+        notificationTextField.setText(notification);
+
+        clearNotification();
+        taskTitleInput.setText("");
+
     }//GEN-LAST:event_addTaskButtonActionPerformed
 
     private void taskTypeSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskTypeSelectActionPerformed
@@ -373,7 +431,30 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_notificationTextFieldActionPerformed
 
     private void addUserButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButton1ActionPerformed
-        // TODO add your handling code here:
+        String userName = userNameInput.getText();
+        String userRole = userRoleSelect.getSelectedItem().toString();
+
+        if (userName.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Enter user name.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+
+        User newUser = UserFactory.createUser(userName, userRole);
+        taskManger.addUser(newUser);
+
+        String notification = NotificationsService.getInstance().sendNotification(
+                "User " + userName + " (" + userRole + ") Created "
+        );
+        clearNotification();
+        notificationTextField.setText(notification);
+        updateAssignToComboBox();
+
+        userNameInput.setText("");
     }//GEN-LAST:event_addUserButton1ActionPerformed
 
     public static void main(String args[]) {
@@ -405,7 +486,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton addUserButton1;
     private javax.swing.JPanel addUserPanel;
     private javax.swing.JComboBox<String> assignToUserSelect;
-    private javax.swing.JButton copleteTask;
+    private javax.swing.JButton completeTask;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -424,4 +505,31 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JTextField userNameInput;
     private javax.swing.JComboBox<String> userRoleSelect;
     // End of variables declaration//GEN-END:variables
+
+    private void setupTaskTable() {
+        String[] columnNames = {"Title", "Type", "Assigned To", "Status"};
+        tableModel = new DefaultTableModel(columnNames, 0); // ***هنا يتم إنشاء الكائن***
+        table.setModel(tableModel);
+    }
+
+    private void updateAssignToComboBox() {
+        assignToUserSelect.removeAllItems();
+        for (User user : taskManger.getUsers()) {
+            assignToUserSelect.addItem(user.getName());
+        }
+    }
+
+    private void activeCompleteButton() {
+        table.getSelectionModel().addListSelectionListener(e -> {
+            completeTask.setEnabled(table.getSelectedRow() != -1);
+        });
+    }
+
+    private void clearNotification() {
+        Timer timer = new Timer(5000, e -> {
+            notificationTextField.setText("");
+        });
+        timer.setRepeats(false);
+        timer.start();
+    }
 }
