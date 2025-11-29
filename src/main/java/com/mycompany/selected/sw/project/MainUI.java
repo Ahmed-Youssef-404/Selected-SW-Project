@@ -16,7 +16,7 @@ public class MainUI extends javax.swing.JFrame {
         userNameInput = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         userRoleSelect = new javax.swing.JComboBox<>();
-        addUserButton = new javax.swing.JButton();
+        addUserButton1 = new javax.swing.JButton();
         addTaskPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         taskTitleInput = new javax.swing.JTextField();
@@ -29,6 +29,7 @@ public class MainUI extends javax.swing.JFrame {
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        copleteTask = new javax.swing.JButton();
         notificatinosPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         notificationTextField = new javax.swing.JTextField();
@@ -70,12 +71,12 @@ public class MainUI extends javax.swing.JFrame {
         userRoleSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         userRoleSelect.setPreferredSize(new java.awt.Dimension(81, 31));
 
-        addUserButton.setBackground(new java.awt.Color(153, 255, 153));
-        addUserButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        addUserButton.setForeground(new java.awt.Color(0, 0, 51));
-        addUserButton.setText("Add User");
-        addUserButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        addUserButton.addActionListener(this::addUserButtonActionPerformed);
+        addUserButton1.setBackground(new java.awt.Color(153, 255, 153));
+        addUserButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        addUserButton1.setForeground(new java.awt.Color(0, 0, 51));
+        addUserButton1.setText("Add User");
+        addUserButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addUserButton1.addActionListener(this::addUserButton1ActionPerformed);
 
         javax.swing.GroupLayout addUserPanelLayout = new javax.swing.GroupLayout(addUserPanel);
         addUserPanel.setLayout(addUserPanelLayout);
@@ -91,12 +92,14 @@ public class MainUI extends javax.swing.JFrame {
                             .addComponent(userRoleSelect, 0, 396, Short.MAX_VALUE)
                             .addComponent(userNameInput)))
                     .addGroup(addUserPanelLayout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(addUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addUserPanelLayout.createSequentialGroup()
                         .addGap(137, 137, 137)
                         .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addUserPanelLayout.createSequentialGroup()
+                    .addGap(102, 102, 102)
+                    .addComponent(addUserButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(111, Short.MAX_VALUE)))
         );
         addUserPanelLayout.setVerticalGroup(
             addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,9 +114,12 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userRoleSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(addUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
+            .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addUserPanelLayout.createSequentialGroup()
+                    .addContainerGap(257, Short.MAX_VALUE)
+                    .addComponent(addUserButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(13, 13, 13)))
         );
 
         addTaskPanel.setBackground(new java.awt.Color(3, 26, 60));
@@ -233,17 +239,30 @@ public class MainUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table);
 
+        copleteTask.setBackground(new java.awt.Color(153, 255, 153));
+        copleteTask.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        copleteTask.setForeground(new java.awt.Color(0, 0, 51));
+        copleteTask.setText("Assign as completed Task");
+        copleteTask.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        copleteTask.addActionListener(this::copleteTaskActionPerformed);
+
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
         tablePanelLayout.setHorizontalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(copleteTask, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tablePanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(copleteTask, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         notificatinosPanel.setBackground(new java.awt.Color(211, 211, 245));
@@ -333,9 +352,9 @@ public class MainUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameInputActionPerformed
 
-    private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
+    private void copleteTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copleteTaskActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addUserButtonActionPerformed
+    }//GEN-LAST:event_copleteTaskActionPerformed
 
     private void taskTitleInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskTitleInputActionPerformed
         // TODO add your handling code here:
@@ -352,6 +371,10 @@ public class MainUI extends javax.swing.JFrame {
     private void notificationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_notificationTextFieldActionPerformed
+
+    private void addUserButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addUserButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -379,9 +402,10 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel HolderPanel;
     private javax.swing.JButton addTaskButton;
     private javax.swing.JPanel addTaskPanel;
-    private javax.swing.JButton addUserButton;
+    private javax.swing.JButton addUserButton1;
     private javax.swing.JPanel addUserPanel;
     private javax.swing.JComboBox<String> assignToUserSelect;
+    private javax.swing.JButton copleteTask;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
