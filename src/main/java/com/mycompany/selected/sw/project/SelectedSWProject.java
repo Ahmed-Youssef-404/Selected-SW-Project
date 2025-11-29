@@ -3,6 +3,7 @@ public class SelectedSWProject {
 
     public static void main(String[] args) {
         System.out.println("Initialising Git, GitHub");
-        System.out.println("Created my first branch (First_Branch)");
+        
+        
     }
 }
