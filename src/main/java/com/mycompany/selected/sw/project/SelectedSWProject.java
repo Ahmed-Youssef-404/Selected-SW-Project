@@ -2,6 +2,8 @@ package com.mycompany.selected.sw.project;
 public class SelectedSWProject {
 
     public static void main(String[] args) {
-        System.out.println("Initialising Git, GitHub");
+        System.out.println("This is the Main class where the project starts");
+        
+        
     }
 }
