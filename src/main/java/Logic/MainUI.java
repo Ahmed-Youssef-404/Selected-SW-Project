@@ -461,15 +461,18 @@ public class MainUI extends javax.swing.JFrame {
 
         taskManger.addTask(task);
         tableModel.addRow(task.toRow());
-
+        
         taskTitleInput.setText("");
         deadlineChooser.setDate(null);
 
 //        notificationTextField.setText("New task created: " + title);
 //        clearNotification();
         String message = "New task created: " + title;
-        notificationTextField.setText(NotificationsService.getInstance().sendNotification(message));
-        clearNotification();
+        NotificationsService.getInstance().showNotification(message, text -> {
+            notificationTextField.setText(text);
+        });
+//        notificationTextField.setText(NotificationsService.getInstance().sendNotification(message));
+//        clearNotification();
 
         numOfTasksCount++;
         numOfTasks.setText(numOfTasksCount + "");
@@ -502,8 +505,11 @@ public class MainUI extends javax.swing.JFrame {
 //        notificationTextField.setText("New user added: " + name);
 //        clearNotification();
         String message = "New user added: " + name;
-        notificationTextField.setText(NotificationsService.getInstance().sendNotification(message));
-        clearNotification();
+        NotificationsService.getInstance().showNotification(message, text -> {
+            notificationTextField.setText(text);
+        });
+//        notificationTextField.setText(NotificationsService.getInstance().sendNotification(message));
+//        clearNotification();
 
         numOfUsersCount++;
         numOfUsers.setText(numOfUsersCount + "");
@@ -530,16 +536,22 @@ public class MainUI extends javax.swing.JFrame {
 //        notificationTextField.setText(NotificationsService.getInstance().sendNotification(message));
 //        clearNotification();
         String message = "Task#" + task.getId() + " moved: " + oldStatus + " → " + newStatus;
-        notificationTextField.setText(NotificationsService.getInstance().sendNotification(message));
-        clearNotification();
+        NotificationsService.getInstance().showNotification(message, text -> {
+            notificationTextField.setText(text);
+        });
+//        notificationTextField.setText(NotificationsService.getInstance().sendNotification(message));
+//        clearNotification();
 
         if ("Done".equals(newStatus)) {
 //            notificationTextField.setText("Congratulations! Task #" + task.getId() + " has been completed.");
 //            clearNotification();
 
             String Donemessage = "Congratulations! Task #" + task.getId() + " has been completed.";
-            notificationTextField.setText(NotificationsService.getInstance().sendNotification(Donemessage));
-            clearNotification();
+            NotificationsService.getInstance().showNotification(Donemessage, text -> {
+                notificationTextField.setText(text);
+            });
+//            notificationTextField.setText(NotificationsService.getInstance().sendNotification(Donemessage));
+//            clearNotification();
         }
 
     }//GEN-LAST:event_nextStatusButtonActionPerformed
@@ -628,13 +640,13 @@ public class MainUI extends javax.swing.JFrame {
         });
     }
 
-    private void clearNotification() {
-        Timer timer = new Timer(5000, e -> {
-            notificationTextField.setText(NotificationsService.getInstance().sendNotification(""));
-        });
-        timer.setRepeats(false);
-        timer.start();
-    }
+//    private void clearNotification() {
+//        Timer timer = new Timer(5000, e -> {
+//            notificationTextField.setText(NotificationsService.getInstance().sendNotification(""));
+//        });
+//        timer.setRepeats(false);
+//        timer.start();
+//    }
 
     private void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(

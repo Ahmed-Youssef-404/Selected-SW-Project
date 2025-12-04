@@ -51,6 +51,6 @@ public class TaskManger {
         for(TaskObserver observer: observers){
             observer.update(message);
         }
-        NotificationsService.getInstance().sendNotification(message);
+//        NotificationsService.getInstance().sendNotification(message);
     }
 }
