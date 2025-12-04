@@ -1,60 +1,76 @@
 package Logic;
-public abstract class Task {
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+public abstract class Task implements Cloneable {
+    private static int idCounter = 1;
+
+    protected int id;
     protected String title;
     protected String type;
     protected String assignedTo;
-    protected String status;
+    protected LocalDate deadline;
+    protected String currentStatus;
+    protected Map<String, Boolean> workflow = new LinkedHashMap<>();
 
-    public Task(String title, String type) {
+    protected Task(String title, String type) {
+        this.id = idCounter++;
         this.title = title;
         this.type = type;
-        this.status = "Pending"; //dufualt value
+        // الـ workflow هيتعبأ من TaskBuilder بعدين
+        // لكن عشان currentStatus ميبقاش null، هنحط قيمة مؤقتة
+        this.currentStatus = "Pending";
     }
 
-    public String getTitle() {
-        return title;
+    public int getId() { return id; }
+    public String getTitle() { return title; }
+    public String getType() { return type; }
+    public String getAssignedTo() { return assignedTo != null ? assignedTo : "Unassigned"; }
+    public LocalDate getDeadline() { return deadline; }
+    public String getCurrentStatus() { return currentStatus; }
+
+    public void setAssignedTo(String user) { this.assignedTo = user; }
+    public void setDeadline(LocalDate deadline) { this.deadline = deadline; }
+
+    public void nextStatus() {
+    if (workflow.isEmpty() || currentStatus == null) return;
+
+        List<String> statuses = new ArrayList<>(workflow.keySet());
+    int currentIndex = statuses.indexOf(currentStatus);
+
+    if (currentIndex == -1 || currentIndex == statuses.size() - 1) {
+        // لو وصل للآخر أو مش لاقي الحالة الحالية
+        return;
     }
 
-    public String getType() {
-        return type;
-    }
+    currentStatus = statuses.get(currentIndex + 1);
+}
 
-    public String getAssignedTo() {
-        return assignedTo;
-    }
-
-    public void setAssignedTo(String user) {
-        this.assignedTo = user;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    @Override
+    public Task clone() {
+        try {
+            Task cloned = (Task) super.clone();
+            cloned.id = idCounter++;
+            cloned.currentStatus = cloned.workflow.keySet().iterator().next();
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 
     public Object[] toRow() {
-        return new Object[]{title, type, assignedTo, status};
+        String deadlineStr = deadline != null ? deadline.toString() : "No deadline";
+        return new Object[]{id, title, type, getAssignedTo(), currentStatus, deadlineStr};
     }
-}
 
-class Feature extends Task{
-    public Feature(String title){
-        super(title, "Feature");
-    }
-}
-
-class Improvement extends Task{
-    public Improvement(String title){
-        super(title, "Improvement");
-    }
-}
-
-class Bug extends Task{
-    public Bug(String title){
-        super(title, "Bug");
+    protected void setWorkflow(Map<String, Boolean> wf) {
+        this.workflow = new LinkedHashMap<>(wf);
+        if (!wf.isEmpty()) {
+            this.currentStatus = wf.keySet().iterator().next(); // أول حالة
+        }
     }
 }
