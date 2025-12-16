@@ -18,11 +18,7 @@ public class NotificationsService {
         }
         return instance;
     }
-
-    /**
-     * @param message الرسالة اللي عايز تعرضها
-     * @param uiUpdater دالة (Callback) بتستقبل النص عشان تحدث الـ UI
-     */
+    
     public void showNotification(String message, Consumer<String> uiUpdater) {
         
         // 1. لو في تايمر قديم شغال، اقتله فوراً

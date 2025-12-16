@@ -1,5 +1,9 @@
 package Logic;
 
+interface TaskObserver {
+    void update(String message);
+}
+
 public class User implements TaskObserver {
 
     private String name;
@@ -27,6 +31,5 @@ public class User implements TaskObserver {
     @Override
     public void update(String message) {
         System.out.println("Notification to " + name + " [" + role + "]: " + message);
-        // في المستقبل ممكن نعمل popup أو notification tray
     }
 }

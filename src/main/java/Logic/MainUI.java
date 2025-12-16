@@ -8,6 +8,14 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
+
+class UserFactory {
+
+    public static User createUser(String name, String role) {
+        return new User(name, role);
+    }
+}
+
 public class MainUI extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainUI.class.getName());
@@ -166,7 +174,6 @@ public class MainUI extends javax.swing.JFrame {
 
         taskTypeSelect.setBackground(new java.awt.Color(239, 248, 255));
         taskTypeSelect.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        taskTypeSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feature", "Improvement", "Bug" }));
         taskTypeSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         taskTypeSelect.setPreferredSize(new java.awt.Dimension(81, 31));
         taskTypeSelect.addActionListener(this::taskTypeSelectActionPerformed);
@@ -454,8 +461,7 @@ public class MainUI extends javax.swing.JFrame {
                     .toLocalDate();
         }
 
-        Task task = new TaskBuilder(title, type)
-                .assignedTo(assignedTo)
+        Task task = new TaskBuilder(title, type, assignedTo)
                 .deadline(deadline)
                 .build();
 

@@ -9,24 +9,29 @@ public class TaskBuilder {
     private String assignedTo;
     private LocalDate deadline;
 
-    // البناء الأساسي: العنوان + النوع (إجباري)
-    public TaskBuilder(String title, String type) {
+    // البناء الأساسي: العنوان + النوع  + المسؤول (إجباري)
+    public TaskBuilder(String title, String type, String assignedTo) {
         if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Task title cannot be empty");
         }
         if (type == null) {
             throw new IllegalArgumentException("Task type cannot be null");
         }
+        if (assignedTo == null) {
+            throw new IllegalArgumentException("Task must be assigned for an employee.");
+        }
 
         this.title = title.trim();
         this.type = type.toLowerCase();
+        this.assignedTo = assignedTo;
+
     }
 
     // اختياري: مين مسؤول عن المهمة
-    public TaskBuilder assignedTo(String assignedTo) {
-        this.assignedTo = assignedTo;
-        return this;
-    }
+//    public TaskBuilder assignedTo(String assignedTo) {
+//        this.assignedTo = assignedTo;
+//        return this;
+//    }
 
     // اختياري: ميعاد التسليم
     public TaskBuilder deadline(LocalDate deadline) {
@@ -66,5 +71,23 @@ public class TaskBuilder {
         }
 
         return task;
+    }
+}
+
+class Improvement extends Task {
+    public Improvement(String title) {
+        super(title, "Improvement");
+    }
+}
+
+class Bug extends Task {
+    public Bug(String title) {
+        super(title, "Bug");
+    }
+}
+
+class Feature extends Task {
+    public Feature(String title) {
+        super(title, "Feature");
     }
 }
