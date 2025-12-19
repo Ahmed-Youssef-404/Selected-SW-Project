@@ -62,9 +62,5 @@ public class TaskManger {
         for (TaskObserver observer : observers) {
             observer.update(message);
         }
-        // NotificationsService.getInstance().showNotification(message, text -> {
-        //     System.out.println(text);
-        //     ;
-        // });
     }
 }

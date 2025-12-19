@@ -483,9 +483,10 @@ public class MainUI extends javax.swing.JFrame {
         deadlineChooser.setDate(null);
 
         String message = "New task created: " + title;
-        NotificationsService.getInstance().showNotification(message, text -> {
-            notificationTextField.setText(text);
-        });
+        
+        NotificationAdapter adapter = new SwingNotificationAdapter(notificationTextField);
+        NotificationsService.getInstance().showNotification(message, adapter::show);
+
 
         numOfTasksCount++;
         numOfTasks.setText(numOfTasksCount + "");
@@ -525,9 +526,11 @@ public class MainUI extends javax.swing.JFrame {
 
         // Send the new message (observer pattern)
         String message = "New user added: " + name;
-        NotificationsService.getInstance().showNotification(message, text -> {
-            notificationTextField.setText(text);
-        });
+
+
+        NotificationAdapter adapter = new SwingNotificationAdapter(notificationTextField);
+        NotificationsService.getInstance().showNotification(message, adapter::show);
+
 
         // Update number of users
         numOfUsersCount++;
@@ -566,10 +569,10 @@ public class MainUI extends javax.swing.JFrame {
         // Prepare a notification message describing the status change
         String message = "Task#" + task.getId() + " moved: " + oldStatus + " → " + newStatus;
 
-        // Display the notification using the Singleton NotificationsService
-        NotificationsService.getInstance().showNotification(message, text -> {
-            notificationTextField.setText(text);
-        });
+        // Display the notification
+        NotificationAdapter adapter = new SwingNotificationAdapter(notificationTextField);
+        NotificationsService.getInstance().showNotification(message, adapter::show);
+
 
         // If the task has reached the final "Done" status
         if ("Done".equals(newStatus)) {
