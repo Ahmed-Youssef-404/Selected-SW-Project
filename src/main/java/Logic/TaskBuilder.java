@@ -2,6 +2,12 @@ package Logic;
 
 import java.time.LocalDate;
 
+// TaskBuilder
+// -----------
+// Implements the Builder Pattern to construct Task objects step by step.
+// Ensures mandatory fields are validated before task creation.
+// Also integrates Factory and Prototype patterns internally.
+
 public class TaskBuilder {
 
     private String title;
@@ -9,7 +15,10 @@ public class TaskBuilder {
     private String assignedTo;
     private LocalDate deadline;
 
-    // البناء الأساسي: العنوان + النوع  + المسؤول (إجباري)
+    // Builder Pattern
+
+    // Constructor with mandatory task attributes
+    // Validates required fields to prevent invalid task creation
     public TaskBuilder(String title, String type, String assignedTo) {
         if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Task title cannot be empty");
@@ -27,23 +36,20 @@ public class TaskBuilder {
 
     }
 
-    // اختياري: مين مسؤول عن المهمة
-//    public TaskBuilder assignedTo(String assignedTo) {
-//        this.assignedTo = assignedTo;
-//        return this;
-//    }
-
-    // اختياري: ميعاد التسليم
+    // Optional builder method to set task deadline
     public TaskBuilder deadline(LocalDate deadline) {
         this.deadline = deadline;
         return this;
     }
 
-    // الخطوة الأخيرة: بناء المهمة النهائية
+    // Final build step
+    // Creates the task object based on type (Factory Pattern)
+    // Assigns workflow templates using Prototype Pattern
     public Task build() {
         Task task;
 
-        // إنشاء المهمة حسب النوع (Factory داخلي)
+        // Factory Pattern
+        // Creates specific Task subclass based on task type
         switch (type) {
             case "bug":
                 task = new Bug(title);
@@ -58,14 +64,11 @@ public class TaskBuilder {
                 throw new IllegalArgumentException("Unknown task type: " + type);
         }
 
-        // Prototype Pattern: جلب الـ Workflow المناسب لكل نوع ونسخه
+        // Prototype Pattern: Get the appropriate workflow for each type and copy it.
         var workflowTemplate = TaskWorkflowManager.getInstance().getWorkflowForType(type);
         task.setWorkflow(workflowTemplate); // مهم جدًا: يفعّل الحالات الخاصة بالنوع
 
-        // تطبيق الخصائص اختيارية
-        if (assignedTo != null && !assignedTo.isEmpty()) {
-            task.setAssignedTo(assignedTo);
-        }
+        // Applying optional properties
         if (deadline != null) {
             task.setDeadline(deadline);
         }
@@ -73,6 +76,10 @@ public class TaskBuilder {
         return task;
     }
 }
+
+
+// Classes that Represents a task type
+// Inherits common behaviors from Task
 
 class Improvement extends Task {
     public Improvement(String title) {

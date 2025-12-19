@@ -1,8 +1,15 @@
 package Logic;
 
+// Observer interface
+// Any class interested in task updates must implement this interface
 interface TaskObserver {
     void update(String message);
 }
+
+// User
+// ----
+// Represents a system user.
+// Implements TaskObserver to receive notifications.
 
 public class User implements TaskObserver {
 
@@ -27,8 +34,10 @@ public class User implements TaskObserver {
         return name;
     }
 
-//     Observer Pattern
+    // Observer Pattern
     @Override
+    // Called automatically when a system event occurs
+    // Displays notification message for the user
     public void update(String message) {
         System.out.println("Notification to " + name + " [" + role + "]: " + message);
     }

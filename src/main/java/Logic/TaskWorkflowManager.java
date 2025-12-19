@@ -2,17 +2,28 @@ package Logic;
 
 import java.util.*;
 
+// TaskWorkflowManager
+// -------------------
+// Manages workflow templates for different task types.
+// Implements Singleton and Prototype patterns.
+
 public class TaskWorkflowManager {
     private static TaskWorkflowManager instance;
+
+    // Stores predefined workflow templates for each task type
     private Map<String, Map<String, Boolean>> workflowTemplates;
 
     private TaskWorkflowManager() {
         workflowTemplates = new HashMap<>();
+
+        // Initializes default workflow templates for all task types
         initializeTemplates();
     }
 
+    // Singleton pattern
     public static TaskWorkflowManager getInstance() {
-        if (instance == null) instance = new TaskWorkflowManager();
+        if (instance == null)
+            instance = new TaskWorkflowManager();
         return instance;
     }
 
@@ -45,7 +56,8 @@ public class TaskWorkflowManager {
         workflowTemplates.put("improvement", impFlow);
     }
 
-    // Prototype Pattern: نرجع نسخة من الـ workflow
+    // Prototype Pattern
+    // Returns a copy of the workflow template to avoid shared references
     public Map<String, Boolean> getWorkflowForType(String type) {
         Map<String, Boolean> template = workflowTemplates.get(type.toLowerCase());
         return template != null ? new LinkedHashMap<>(template) : new LinkedHashMap<>();
