@@ -64,8 +64,6 @@ public class TaskBuilder {
                 throw new IllegalArgumentException("Unknown task type: " + type);
         }
 
-        task.setAssignedTo(assignedTo);
-
         // Prototype Pattern: Get the appropriate workflow for each type and copy it.
         var workflowTemplate = TaskWorkflowManager.getInstance().getWorkflowForType(type);
         task.setWorkflow(workflowTemplate); // مهم جدًا: يفعّل الحالات الخاصة بالنوع
@@ -75,10 +73,13 @@ public class TaskBuilder {
             task.setDeadline(deadline);
         }
 
+        if (assignedTo != null) {
+            task.setAssignedTo(assignedTo);
+        }
+
         return task;
     }
 }
-
 
 // Classes that Represents a task type
 // Inherits common behaviors from Task

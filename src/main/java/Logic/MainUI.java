@@ -33,11 +33,11 @@ public class MainUI extends javax.swing.JFrame {
 
         taskManger = TaskManger.getInstance();
         setupTaskTable();
-        populateComboBoxes();
+        // populateComboBoxes();
         updateAssignToComboBox();
 
-        table.getSelectionModel()
-                .addListSelectionListener(e -> nextStatusButton.setEnabled(table.getSelectedRow() != -1));
+        nextStatusButton.setEnabled(false);
+
     }
 
     int numOfUsersCount = 0;
@@ -45,7 +45,7 @@ public class MainUI extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         HolderPanel = new javax.swing.JPanel();
@@ -110,8 +110,7 @@ public class MainUI extends javax.swing.JFrame {
 
         userRoleSelect.setBackground(new java.awt.Color(239, 248, 255));
         userRoleSelect.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        userRoleSelect
-                .setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Developer", "Tester", "Admin" }));
+        userRoleSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Developer", "Tester", "Admin" }));
         userRoleSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         userRoleSelect.setPreferredSize(new java.awt.Dimension(81, 31));
 
@@ -125,57 +124,41 @@ public class MainUI extends javax.swing.JFrame {
         javax.swing.GroupLayout addUserPanelLayout = new javax.swing.GroupLayout(addUserPanel);
         addUserPanel.setLayout(addUserPanelLayout);
         addUserPanelLayout.setHorizontalGroup(
-                addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(addUserPanelLayout.createSequentialGroup()
-                                .addGroup(addUserPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(addUserPanelLayout.createSequentialGroup()
-                                                .addGap(12, 12, 12)
-                                                .addGroup(addUserPanelLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                false)
-                                                        .addComponent(jLabel2,
-                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 53,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel3,
-                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 53,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(userRoleSelect,
-                                                                javax.swing.GroupLayout.Alignment.LEADING, 0, 396,
-                                                                Short.MAX_VALUE)
-                                                        .addComponent(userNameInput,
-                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                addUserPanelLayout.createSequentialGroup()
-                                                                        .addGap(140, 140, 140)
-                                                                        .addComponent(addUserButton))))
-                                        .addGroup(addUserPanelLayout.createSequentialGroup()
-                                                .addGap(137, 137, 137)
-                                                .addComponent(jLabel1)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addUserPanelLayout.createSequentialGroup()
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addUserPanelLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userRoleSelect, javax.swing.GroupLayout.Alignment.LEADING, 0, 396, Short.MAX_VALUE)
+                            .addComponent(userNameInput, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addUserPanelLayout.createSequentialGroup()
+                                .addGap(140, 140, 140)
+                                .addComponent(addUserButton))))
+                    .addGroup(addUserPanelLayout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
         addUserPanelLayout.setVerticalGroup(
-                addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(addUserPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(userNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 37,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(userRoleSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addUserButton)
-                                .addContainerGap(21, Short.MAX_VALUE)));
+            addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addUserPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userRoleSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addUserButton)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
 
         addTaskPanel.setBackground(new java.awt.Color(3, 26, 60));
 
@@ -196,6 +179,7 @@ public class MainUI extends javax.swing.JFrame {
 
         taskTypeSelect.setBackground(new java.awt.Color(239, 248, 255));
         taskTypeSelect.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        taskTypeSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feature", "Improvement", "Bug" }));
         taskTypeSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         taskTypeSelect.setPreferredSize(new java.awt.Dimension(81, 31));
         taskTypeSelect.addActionListener(this::taskTypeSelectActionPerformed);
@@ -231,96 +215,76 @@ public class MainUI extends javax.swing.JFrame {
         javax.swing.GroupLayout addTaskPanelLayout = new javax.swing.GroupLayout(addTaskPanel);
         addTaskPanel.setLayout(addTaskPanelLayout);
         addTaskPanelLayout.setHorizontalGroup(
-                addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addTaskPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(taskTitleInput, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                        .addComponent(taskTypeSelect, 0, 405, Short.MAX_VALUE)
+                        .addComponent(assignToUserSelect, 0, 405, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(addTaskPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(addTaskPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(addTaskPanelLayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(taskTitleInput, javax.swing.GroupLayout.DEFAULT_SIZE, 405,
-                                                        Short.MAX_VALUE)
-                                                .addComponent(taskTypeSelect, 0, 405, Short.MAX_VALUE)
-                                                .addComponent(assignToUserSelect, 0, 405, Short.MAX_VALUE)
-                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 53,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 92,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(addTaskPanelLayout.createSequentialGroup()
-                                                        .addComponent(deadlineChooser,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 161,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(addTaskButton,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 128,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(jLabel9))
-                                .addContainerGap(13, Short.MAX_VALUE))
-                        .addGroup(addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(addTaskPanelLayout.createSequentialGroup()
-                                        .addGap(145, 145, 145)
-                                        .addComponent(jLabel8)
-                                        .addContainerGap(154, Short.MAX_VALUE))));
+                            .addComponent(deadlineChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel9))
+                .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addTaskPanelLayout.createSequentialGroup()
+                    .addGap(145, 145, 145)
+                    .addComponent(jLabel8)
+                    .addContainerGap(154, Short.MAX_VALUE)))
+        );
         addTaskPanelLayout.setVerticalGroup(
-                addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(addTaskPanelLayout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(taskTitleInput, javax.swing.GroupLayout.PREFERRED_SIZE, 37,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(taskTypeSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(assignToUserSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(addTaskPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(deadlineChooser, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(addTaskButton))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(addTaskPanelLayout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(369, Short.MAX_VALUE))));
+            addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addTaskPanelLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(taskTitleInput, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(taskTypeSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(assignToUserSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deadlineChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addTaskButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(addTaskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addTaskPanelLayout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(369, Short.MAX_VALUE)))
+        );
 
         tablePanel.setBackground(new java.awt.Color(164, 174, 197));
 
         table.setBackground(new java.awt.Color(242, 237, 245));
         table.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
+            new Object [][] {
 
-                },
-                new String[] {
-                        "Task ID", "Title", "Type", "Assigned To", "Status"
-                }) {
-            boolean[] canEdit = new boolean[] {
-                    false, false, false, false, false
+            },
+            new String [] {
+                "Task ID", "Title", "Type", "Assigned To", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         table.setGridColor(new java.awt.Color(232, 224, 255));
@@ -361,42 +325,34 @@ public class MainUI extends javax.swing.JFrame {
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
         tablePanelLayout.setHorizontalGroup(
-                tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-                        .addGroup(tablePanelLayout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(numOfUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 81,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(numOfTasks, javax.swing.GroupLayout.PREFERRED_SIZE, 94,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nextStatusButton)));
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+            .addGroup(tablePanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(numOfUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(numOfTasks, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nextStatusButton))
+        );
         tablePanelLayout.setVerticalGroup(
-                tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(tablePanelLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(tablePanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nextStatusButton)
-                                        .addGroup(tablePanelLayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(numOfUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(numOfTasks, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(14, Short.MAX_VALUE)));
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tablePanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nextStatusButton)
+                    .addGroup(tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(numOfUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(numOfTasks, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
 
         notificatinosPanel.setBackground(new java.awt.Color(211, 211, 245));
 
@@ -416,75 +372,66 @@ public class MainUI extends javax.swing.JFrame {
         javax.swing.GroupLayout notificatinosPanelLayout = new javax.swing.GroupLayout(notificatinosPanel);
         notificatinosPanel.setLayout(notificatinosPanelLayout);
         notificatinosPanelLayout.setHorizontalGroup(
-                notificatinosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(notificatinosPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(notificatinosPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(notificatinosPanelLayout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(notificationTextField))
-                                .addContainerGap()));
+            notificatinosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(notificatinosPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(notificatinosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(notificatinosPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(notificationTextField))
+                .addContainerGap())
+        );
         notificatinosPanelLayout.setVerticalGroup(
-                notificatinosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(notificatinosPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(notificationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 65,
-                                        Short.MAX_VALUE)
-                                .addContainerGap()));
+            notificatinosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(notificatinosPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(notificationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout HolderPanelLayout = new javax.swing.GroupLayout(HolderPanel);
         HolderPanel.setLayout(HolderPanelLayout);
         HolderPanelLayout.setHorizontalGroup(
-                HolderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(HolderPanelLayout.createSequentialGroup()
-                                .addGroup(HolderPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(addUserPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(addTaskPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(HolderPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(HolderPanelLayout.createSequentialGroup()
-                                                .addComponent(notificatinosPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addContainerGap()))));
+            HolderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HolderPanelLayout.createSequentialGroup()
+                .addGroup(HolderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addUserPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addTaskPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(HolderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(HolderPanelLayout.createSequentialGroup()
+                        .addComponent(notificatinosPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+        );
         HolderPanelLayout.setVerticalGroup(
-                HolderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(HolderPanelLayout.createSequentialGroup()
-                                .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(notificatinosPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-                        .addGroup(HolderPanelLayout.createSequentialGroup()
-                                .addComponent(addUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addTaskPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            HolderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HolderPanelLayout.createSequentialGroup()
+                .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(notificatinosPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(HolderPanelLayout.createSequentialGroup()
+                .addComponent(addUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addTaskPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(HolderPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(HolderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(HolderPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(HolderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -505,7 +452,6 @@ public class MainUI extends javax.swing.JFrame {
         String type = (String) taskTypeSelect.getSelectedItem();
 
         String assignedTo = (String) assignToUserSelect.getSelectedItem();
-
 
         LocalDate deadline = null;
 
@@ -554,7 +500,9 @@ public class MainUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_notificationTextFieldActionPerformed
 
+    // "Add user" button logic
     private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addUserButtonActionPerformed
+
         String name = userNameInput.getText().trim();
         String role = (String) userRoleSelect.getSelectedItem();
 
@@ -563,43 +511,73 @@ public class MainUI extends javax.swing.JFrame {
             return;
         }
 
+        // Create new user uaing Factory pattern
         User user = UserFactory.createUser(name, role);
+
+        // Add the new user to "users" List
         taskManger.addUser(user);
+
+        // Add the new user to the comboBox
         updateAssignToComboBox();
+
+        // Clear user name input field
         userNameInput.setText("");
 
+        // Send the new message (observer pattern)
         String message = "New user added: " + name;
         NotificationsService.getInstance().showNotification(message, text -> {
             notificationTextField.setText(text);
         });
 
+        // Update number of users
         numOfUsersCount++;
         numOfUsers.setText(numOfUsersCount + "");
 
     }// GEN-LAST:event_addUserButtonActionPerformed
 
+
     private void nextStatusButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_nextStatusButtonActionPerformed
+
+        // Get the selected row index from the task table
         int row = table.getSelectedRow();
+
+        // If no row is selected, show an error message and stop execution
         if (row == -1) {
             showErrorMessage("Please select a task");
             return;
         }
 
+        // Retrieve the corresponding Task object using the selected row index
         Task task = taskManger.getTasks().get(row);
+
+        // Store the current status before changing it
         String oldStatus = task.getCurrentStatus();
+
+        // Move the task to the next status in its workflow
         task.nextStatus();
+
+        // Get the updated status after transition
         String newStatus = task.getCurrentStatus();
 
+        // Update the task status in the table UI
+        // Column index 4 represents the Status column
         tableModel.setValueAt(newStatus, row, 4);
 
+        // Prepare a notification message describing the status change
         String message = "Task#" + task.getId() + " moved: " + oldStatus + " → " + newStatus;
+
+        // Display the notification using the Singleton NotificationsService
         NotificationsService.getInstance().showNotification(message, text -> {
             notificationTextField.setText(text);
         });
 
+        // If the task has reached the final "Done" status
         if ("Done".equals(newStatus)) {
 
+            // Prepare a congratulatory message for task completion
             String Donemessage = "Congratulations! Task #" + task.getId() + " has been completed.";
+
+            // Display completion notification in the UI
             NotificationsService.getInstance().showNotification(Donemessage, text -> {
                 notificationTextField.setText(text);
             });
@@ -607,6 +585,7 @@ public class MainUI extends javax.swing.JFrame {
 
     }// GEN-LAST:event_nextStatusButtonActionPerformed
 
+    // Enabel "Update Task status" when selecting a row
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tableMouseClicked
         boolean selected = table.getSelectedRow() != -1;
         nextStatusButton.setEnabled(selected);
@@ -680,20 +659,12 @@ public class MainUI extends javax.swing.JFrame {
         tableModel = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // الجدول للعرض فقط
+                return false;
             }
         };
         table.setModel(tableModel);
         table.setRowHeight(40);
     }
-
-    // private void activeButtons() {
-    // table.getSelectionModel().addListSelectionListener(e -> {
-    // boolean hasSelection = table.getSelectedRow() != -1;
-    // nextStatusButton.setEnabled(hasSelection);
-    // // completeTaskButton.setEnabled(hasSelection); // لو لسه موجود
-    // });
-    // }
 
     private void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(
@@ -703,30 +674,12 @@ public class MainUI extends javax.swing.JFrame {
                 JOptionPane.ERROR_MESSAGE);
     }
 
-    private void populateComboBoxes() {
-        taskTypeSelect.removeAllItems();
-        taskTypeSelect.addItem("Bug");
-        taskTypeSelect.addItem("Feature");
-        taskTypeSelect.addItem("Improvement");
-
-        userRoleSelect.removeAllItems();
-        userRoleSelect.addItem("Developer");
-        userRoleSelect.addItem("Tester");
-        userRoleSelect.addItem("Team Lead");
-    }
-
+    // Add new users to "AssignTo" comboBox
     private void updateAssignToComboBox() {
         assignToUserSelect.removeAllItems();
         for (User u : taskManger.getUsers()) {
             assignToUserSelect.addItem(u.getName());
         }
     }
-
-    // private void refreshTable() {
-    // tableModel.setRowCount(0);
-    // for (Task t : taskManger.getTasks()) {
-    // tableModel.addRow(t.toRow());
-    // }
-    // }
 
 }
