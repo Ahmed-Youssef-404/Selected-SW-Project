@@ -36,9 +36,12 @@ public class User implements TaskObserver {
 
     // Observer Pattern
     @Override
-    // Called automatically when a system event occurs
-    // Displays notification message for the user
     public void update(String message) {
-        System.out.println("Notification to " + name + " [" + role + "]: " + message);
+
+        // Create a console adapter to display notifications in the terminal
+        NotificationAdapter adapter = new ConsoleNotificationAdapter();
+
+        // Adapt and display the notification message
+        adapter.show("Notification to " + name + " [" + role + "]: " + message);
     }
 }
