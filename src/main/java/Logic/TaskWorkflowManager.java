@@ -39,8 +39,8 @@ public class TaskWorkflowManager {
 
         // Feature Workflow
         Map<String, Boolean> featureFlow = new LinkedHashMap<>();
-        featureFlow.put("Backlog", false);
-        featureFlow.put("Refinement", false);
+        featureFlow.put("Search", false);
+        featureFlow.put("Optimize", false);
         featureFlow.put("In Development", false);
         featureFlow.put("Code Review", false);
         featureFlow.put("UAT", false);

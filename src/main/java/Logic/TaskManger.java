@@ -19,7 +19,7 @@ public class TaskManger {
     private List<User> users;
 
     // List of observers (users) that receive notifications
-    private List<TaskObserver> observers;
+    private List<UserObserver> observers;
 
     private TaskManger() {
         tasks = new ArrayList<>();
@@ -59,7 +59,7 @@ public class TaskManger {
     // Observer Pattern
     // Notifies all registered observers about system events
     private void notifyObservers(String message) {
-        for (TaskObserver observer : observers) {
+        for (UserObserver observer : observers) {
             observer.update(message);
         }
     }
