@@ -498,14 +498,15 @@ public class MainUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_taskTitleInputActionPerformed
 
-
-
     // Handles Add Task button click
     // Collects input data and creates task using TaskBuilder
     private void addTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addTaskButtonActionPerformed
         String title = taskTitleInput.getText().trim();
         String type = (String) taskTypeSelect.getSelectedItem();
+
         String assignedTo = (String) assignToUserSelect.getSelectedItem();
+
+
         LocalDate deadline = null;
 
         if (title.isEmpty()) {
@@ -575,7 +576,7 @@ public class MainUI extends javax.swing.JFrame {
         numOfUsersCount++;
         numOfUsers.setText(numOfUsersCount + "");
 
-    }//GEN-LAST:event_addUserButtonActionPerformed
+    }// GEN-LAST:event_addUserButtonActionPerformed
 
     private void nextStatusButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_nextStatusButtonActionPerformed
         int row = table.getSelectedRow();
@@ -687,11 +688,11 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // private void activeButtons() {
-    //     table.getSelectionModel().addListSelectionListener(e -> {
-    //         boolean hasSelection = table.getSelectedRow() != -1;
-    //         nextStatusButton.setEnabled(hasSelection);
-    //         // completeTaskButton.setEnabled(hasSelection); // لو لسه موجود
-    //     });
+    // table.getSelectionModel().addListSelectionListener(e -> {
+    // boolean hasSelection = table.getSelectedRow() != -1;
+    // nextStatusButton.setEnabled(hasSelection);
+    // // completeTaskButton.setEnabled(hasSelection); // لو لسه موجود
+    // });
     // }
 
     private void showErrorMessage(String message) {
@@ -722,10 +723,10 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // private void refreshTable() {
-    //     tableModel.setRowCount(0);
-    //     for (Task t : taskManger.getTasks()) {
-    //         tableModel.addRow(t.toRow());
-    //     }
+    // tableModel.setRowCount(0);
+    // for (Task t : taskManger.getTasks()) {
+    // tableModel.addRow(t.toRow());
+    // }
     // }
 
 }
