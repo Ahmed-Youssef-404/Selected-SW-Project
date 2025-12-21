@@ -34,14 +34,11 @@ public class User implements UserObserver {
         return name;
     }
 
-    // Observer Pattern
     @Override
     public void update(String message) {
 
-        // Create a console adapter to display notifications in the terminal
         NotificationAdapter adapter = new ConsoleNotificationAdapter();
 
-        // Adapt and display the notification message
         adapter.show("Notification to " + name + " [" + role + "]: " + message);
     }
 }

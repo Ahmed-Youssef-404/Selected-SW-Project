@@ -512,19 +512,14 @@ public class MainUI extends javax.swing.JFrame {
             return;
         }
 
-        // Create new user uaing Factory pattern
         User user = UserFactory.createUser(name, role);
 
-        // Add the new user to "users" List
         taskManger.addUser(user);
 
-        // Add the new user to the comboBox
         updateAssignToComboBox();
 
-        // Clear user name input field
         userNameInput.setText("");
 
-        // Send the new message (observer pattern)
         String message = "New user added: " + name;
 
 
@@ -532,7 +527,6 @@ public class MainUI extends javax.swing.JFrame {
         NotificationsService.getInstance().showNotification(message, adapter::show);
 
 
-        // Update number of users
         numOfUsersCount++;
         numOfUsers.setText(numOfUsersCount + "");
 
@@ -541,7 +535,6 @@ public class MainUI extends javax.swing.JFrame {
 
     private void nextStatusButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_nextStatusButtonActionPerformed
 
-        // Get the selected row index from the task table
         int row = table.getSelectedRow();
 
         // If no row is selected, show an error message and stop execution
@@ -550,37 +543,27 @@ public class MainUI extends javax.swing.JFrame {
             return;
         }
 
-        // Retrieve the corresponding Task object using the selected row index
         Task task = taskManger.getTasks().get(row);
 
-        // Store the current status before changing it
         String oldStatus = task.getCurrentStatus();
 
-        // Move the task to the next status in its workflow
         task.nextStatus();
 
-        // Get the updated status after transition
         String newStatus = task.getCurrentStatus();
 
-        // Update the task status in the table UI
         // Column index 4 represents the Status column
         tableModel.setValueAt(newStatus, row, 4);
 
-        // Prepare a notification message describing the status change
         String message = "Task#" + task.getId() + " moved: " + oldStatus + " → " + newStatus;
 
-        // Display the notification
         NotificationAdapter adapter = new SwingNotificationAdapter(notificationTextField);
         NotificationsService.getInstance().showNotification(message, adapter::show);
 
 
-        // If the task has reached the final "Done" status
         if ("Done".equals(newStatus)) {
 
-            // Prepare a congratulatory message for task completion
             String Donemessage = "Congratulations! Task #" + task.getId() + " has been completed.";
 
-            // Display completion notification in the UI
             NotificationsService.getInstance().showNotification(Donemessage, text -> {
                 notificationTextField.setText(text);
             });

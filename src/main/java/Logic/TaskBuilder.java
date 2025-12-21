@@ -15,10 +15,7 @@ public class TaskBuilder {
     private String assignedTo;
     private LocalDate deadline;
 
-    // Builder Pattern
 
-    // Constructor with mandatory task attributes
-    // Validates required fields to prevent invalid task creation
     public TaskBuilder(String title, String type, String assignedTo) {
         if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Task title cannot be empty");
@@ -36,20 +33,14 @@ public class TaskBuilder {
 
     }
 
-    // Optional builder method to set task deadline
     public TaskBuilder deadline(LocalDate deadline) {
         this.deadline = deadline;
         return this;
     }
 
-    // Final build step
-    // Creates the task object based on type (Factory Pattern)
-    // Assigns workflow templates using Prototype Pattern
     public Task build() {
         Task task;
 
-        // Factory Pattern
-        // Creates specific Task subclass based on task type
         switch (type) {
             case "bug":
                 task = new Bug(title);
@@ -64,25 +55,16 @@ public class TaskBuilder {
                 throw new IllegalArgumentException("Unknown task type: " + type);
         }
 
-        // Prototype Pattern: Get the appropriate workflow for each type and copy it.
         var workflowTemplate = TaskWorkflowManager.getInstance().getWorkflowForType(type);
-        task.setWorkflow(workflowTemplate); // مهم جدًا: يفعّل الحالات الخاصة بالنوع
+        task.setWorkflow(workflowTemplate);
 
-        // Applying optional properties
         if (deadline != null) {
             task.setDeadline(deadline);
         }
-
-        if (assignedTo != null) {
-            task.setAssignedTo(assignedTo);
-        }
-
+        
         return task;
     }
 }
-
-// Classes that Represents a task type
-// Inherits common behaviors from Task
 
 class Improvement extends Task {
     public Improvement(String title) {

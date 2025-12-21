@@ -14,7 +14,6 @@ import java.util.Map;
 
 public abstract class Task implements Cloneable {
 
-    // Static counter to generate unique IDs for each task
     private static int idCounter = 1;
 
     protected int id;
@@ -24,18 +23,12 @@ public abstract class Task implements Cloneable {
     protected LocalDate deadline;
     protected String currentStatus;
 
-    // Represents the task workflow (ordered statuses)
-    // LinkedHashMap is used to preserve status order
     protected Map<String, Boolean> workflow = new LinkedHashMap<>();
 
-    // Protected constructor to restrict direct instantiation
-    // Task objects should be created using TaskBuilder
     protected Task(String title, String type) {
         this.id = idCounter++;
         this.title = title;
         this.type = type;
-        // الـ workflow هيتعبأ من TaskBuilder بعدين
-        // لكن عشان currentStatus ميبقاش null، هنحط قيمة مؤقتة
         this.currentStatus = "Pending";
     }
 
@@ -71,8 +64,6 @@ public abstract class Task implements Cloneable {
         this.deadline = deadline;
     }
 
-    // Moves the task to the next status in the workflow
-    // If the task is already in the final state, no change occurs
     public void nextStatus() {
         if (workflow.isEmpty() || currentStatus == null)
             return;
@@ -81,7 +72,6 @@ public abstract class Task implements Cloneable {
         int currentIndex = statuses.indexOf(currentStatus);
 
         if (currentIndex == -1 || currentIndex == statuses.size() - 1) {
-            // لو وصل للآخر أو مش لاقي الحالة الحالية
             return;
         }
 
@@ -90,9 +80,6 @@ public abstract class Task implements Cloneable {
 
     @Override
 
-    // Prototype Pattern
-    // Creates a copy of the task with a new unique ID
-    // Resets the status to the first workflow state
     public Task clone() {
         try {
             Task cloned = (Task) super.clone();
@@ -109,8 +96,6 @@ public abstract class Task implements Cloneable {
         return new Object[] { id, title, type, getAssignedTo(), currentStatus, deadlineStr };
     }
 
-    // Assigns a workflow template to the task
-    // A copy is used to prevent shared references between tasks
     protected void setWorkflow(Map<String, Boolean> wf) {
         this.workflow = new LinkedHashMap<>(wf);
         if (!wf.isEmpty()) {
