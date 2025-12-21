@@ -8,18 +8,15 @@ import java.util.List;
 // Central controller of the application.
 // Manages tasks, users, and observers.
 // Implements Singleton and Observer patterns.
-
 public class TaskManger {
 
     private static TaskManger instance;
 
-    // Stores all created tasks in the system
     private List<Task> tasks;
 
     private List<User> users;
 
-    // List of observers (users) that receive notifications
-    private List<TaskObserver> observers;
+    private List<UserObserver> observers;
 
     private TaskManger() {
         tasks = new ArrayList<>();
@@ -27,7 +24,6 @@ public class TaskManger {
         observers = new ArrayList<>();
     }
 
-    // Singleton pattern
     public static TaskManger getInstance() {
         if (instance == null) {
             instance = new TaskManger();
@@ -35,8 +31,6 @@ public class TaskManger {
         return instance;
     }
 
-    // Adds a new task to the system
-    // Notifies all observers about task creation
     public void addTask(Task t) {
         tasks.add(t);
         notifyObservers("New task '" + t.getTitle() + "' created and assigned to "
@@ -56,11 +50,11 @@ public class TaskManger {
         return users;
     }
 
-    // Observer Pattern
-    // Notifies all registered observers about system events
     private void notifyObservers(String message) {
-        for (TaskObserver observer : observers) {
+        System.out.println("------------------------------------------------------------");
+        for (UserObserver observer : observers) {
             observer.update(message);
         }
+        System.out.println("------------------------------------------------------------");
     }
 }

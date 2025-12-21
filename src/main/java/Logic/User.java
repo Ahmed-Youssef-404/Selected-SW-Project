@@ -2,7 +2,7 @@ package Logic;
 
 // Observer interface
 // Any class interested in task updates must implement this interface
-interface TaskObserver {
+interface UserObserver {
     void update(String message);
 }
 
@@ -11,7 +11,7 @@ interface TaskObserver {
 // Represents a system user.
 // Implements TaskObserver to receive notifications.
 
-public class User implements TaskObserver {
+public class User implements UserObserver {
 
     private String name;
     private String role;
@@ -34,14 +34,11 @@ public class User implements TaskObserver {
         return name;
     }
 
-    // Observer Pattern
     @Override
     public void update(String message) {
 
-        // Create a console adapter to display notifications in the terminal
         NotificationAdapter adapter = new ConsoleNotificationAdapter();
 
-        // Adapt and display the notification message
         adapter.show("Notification to " + name + " [" + role + "]: " + message);
     }
 }
